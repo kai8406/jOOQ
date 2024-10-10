@@ -2213,7 +2213,7 @@ public class DefaultBinding<T, U> implements Binding<T, U> {
     }
 
     static final class DefaultBooleanBinding<U> extends InternalBinding<Boolean, U> {
-        static final Set<SQLDialect> BIND_AS_1_0        = SQLDialect.supportedUntil(FIREBIRD, SQLITE);
+        static final Set<SQLDialect> BIND_AS_1_0        = SQLDialect.supportedUntil(FIREBIRD, SQLITE,CLICKHOUSE);
 
 
 
@@ -2686,7 +2686,7 @@ public class DefaultBinding<T, U> implements Binding<T, U> {
     }
 
     static final class DefaultDateBinding<U> extends InternalBinding<Date, U> {
-        private static final Set<SQLDialect> INLINE_AS_STRING_LITERAL = SQLDialect.supportedBy(SQLITE);
+        private static final Set<SQLDialect> INLINE_AS_STRING_LITERAL = SQLDialect.supportedBy(SQLITE,CLICKHOUSE);
 
         DefaultDateBinding(DataType<Date> dataType, Converter<Date, U> converter) {
             super(dataType, converter);
@@ -2808,6 +2808,8 @@ public class DefaultBinding<T, U> implements Binding<T, U> {
 
                 // DuckDB doesn't support setDate() yet: https://github.com/duckdb/duckdb/discussions/7207
                 case DUCKDB:
+
+                case CLICKHOUSE:
 
                 // SQLite's type affinity needs special care...
                 case SQLITE:
@@ -5252,7 +5254,7 @@ public class DefaultBinding<T, U> implements Binding<T, U> {
     }
 
     static final class DefaultTimestampBinding<U> extends InternalBinding<Timestamp, U> {
-        private static final Set<SQLDialect> INLINE_AS_STRING_LITERAL = SQLDialect.supportedBy(SQLITE);
+        private static final Set<SQLDialect> INLINE_AS_STRING_LITERAL = SQLDialect.supportedBy(SQLITE,CLICKHOUSE);
 
         DefaultTimestampBinding(DataType<Timestamp> dataType, Converter<Timestamp, U> converter) {
             super(dataType, converter);

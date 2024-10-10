@@ -1576,6 +1576,8 @@ public enum SQLDialect {
                 case MYSQL:       return "MySQL";
                 case POSTGRES:
                 case YUGABYTEDB:  return "PostgreSQL";
+                case CLICKHOUSE:  return "ClickHouse";
+
 
                 default:          return null;
             }
